@@ -1,17 +1,11 @@
 package dev.l_gomes_ar.mediarecommendation.model;
 
 public abstract class Media {
-    protected String adult;
-    protected String backdrop_path;
     protected String[] genre_ids;
     protected int id;
     public String original_language;
     protected String overview;
-    protected String popularity;
-    protected String poster_path;
-    protected String video;
     protected String vote_average;
-    protected String vote_count;
 
     protected String getGenreList(GenreList genreList) {
         if (genre_ids == null) return "Not available";
@@ -27,11 +21,6 @@ public abstract class Media {
 
     public String[] getGenreId() {
         return this.genre_ids;
-//        StringBuilder genreIdsString = new StringBuilder();
-//        for (String id : genre_ids) {
-//            genreIdsString.append(id).append(",");
-//        }
-//        return genreIdsString.toString();
     }
 
     protected String shortenOverview(String text) {
@@ -51,11 +40,11 @@ public abstract class Media {
 
     public String getTitle() {
         return null;
-    };
+    }
 
     public String getName() {
         return null;
-    };
+    }
 
     public abstract void displayShortSummary();
 

@@ -3,7 +3,6 @@ package dev.l_gomes_ar.mediarecommendation.model;
 public class Series extends Media {
     protected String original_name;
     protected String name;
-    protected String[] origin_country;
 
     public String getName() {
         return name;

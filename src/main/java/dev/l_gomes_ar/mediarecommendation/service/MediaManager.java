@@ -41,7 +41,7 @@ public class MediaManager {
         filterRecommendations(type);
     }
 
-    // filter recommendations - remove watched list
+    // Filter recommendations - remove watched media from list
     private void filterRecommendations(String type) {
         ArrayList<Media> comparisonList = (type.equals("movie")) ? movieLikedList : seriesLikedList;
 
@@ -66,7 +66,6 @@ public class MediaManager {
     public String buildRecommendationQuery(ArrayList<Media> mediaList) {
         StringBuilder query = new StringBuilder();
 
-        // Collect unique combinations of genres with comma and |
         HashSet<String> genreIds = new HashSet<>();
         for (Media item : mediaList) {
             if (item.getGenreId() != null) {
@@ -93,7 +92,7 @@ public class MediaManager {
         return query.toString();
     }
 
-    // functionality for retrieving info (searching) by query
+    // Functionality for searching by query
     public void searchMedia(String type, String query) {
         this.searchList = apiConnection.searchMediaByQuery(type, query);
     }
