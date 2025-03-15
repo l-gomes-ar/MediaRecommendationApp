@@ -18,6 +18,7 @@ public class MediaManager {
     public SearchResult searchList;
     public SearchResult recommendationList;
 
+    // Populates the genreList with a GenreList obj including .genres HashMap of key: id and value: name
     public MediaManager() {
         genreList = apiConnection.getGenreList("movie");
         genreList.genres.putAll(apiConnection.getGenreList("series").genres);
@@ -63,6 +64,7 @@ public class MediaManager {
         }
     }
 
+    // Builds the query used for retrieving the recommendation list from the API
     public String buildRecommendationQuery(ArrayList<Media> mediaList) {
         StringBuilder query = new StringBuilder();
 
@@ -101,6 +103,7 @@ public class MediaManager {
         this.searchList = apiConnection.searchMediaByQuery(type, query, page);
     }
 
+    // Add media to liked list
     public void addMediaToLikedList(int id, SearchResult list) {
         for (Media mediaItem : list.results) {
             int mediaId = mediaItem.getId();

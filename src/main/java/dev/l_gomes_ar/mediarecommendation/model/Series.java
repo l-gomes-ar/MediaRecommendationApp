@@ -8,6 +8,7 @@ public class Series extends Media {
         return name;
     }
 
+    // Displays formatted string with summarised info
     public void displayShortSummary() {
         String string = "=====================================================================\n" +
                 "ID: " + id + "\n" +
@@ -15,6 +16,7 @@ public class Series extends Media {
         System.out.println(string);
     }
 
+    // Returns formatted string with series info
     public String toString(GenreList genreList) {
         String formattedTitle = (name.equals(original_name)) ? "Title: " + name + "\n" : "Title: " + name + "\n" +
                 "Original Title: " + original_name + "\n";

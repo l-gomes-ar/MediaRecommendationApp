@@ -33,6 +33,7 @@ public class UI {
     private final Scanner scanner = new Scanner(System.in);
     private final MediaManager mediaManager = new MediaManager();
 
+    // Start main menu
     public void startMenu() {
         System.out.println("=====================================================================");
         System.out.println("               WELCOME TO THE MEDIA RECOMMENDATION APP               ");
@@ -57,6 +58,7 @@ public class UI {
         }
     }
 
+    // Start menu for showing recommendations
     public void viewRecommendationsMenu() {
         String type = getMediaOption();
         if (type == null) return;
@@ -68,6 +70,7 @@ public class UI {
         addMediaMenu(RECOMMENDATION, type, "");
     }
 
+    // Start menu for querying the TMdb API
     public void searchMediaMenu() {
         String type = getMediaOption();
         if (type == null) return;
@@ -79,6 +82,7 @@ public class UI {
         addMediaMenu(SEARCH, type, query);
     }
 
+    // Start menu for adding media to liked list
     public void addMediaMenu(String listType, String type, String query) {
         SearchResult list = listType.equals(RECOMMENDATION) ?
                 mediaManager.recommendationList :
@@ -122,12 +126,14 @@ public class UI {
         } while (!option.equals("3"));
     }
 
+    // Start menu for displaying the list of liked media
     public void displayLikedMenu() {
         String type = getMediaOption();
         if (type == null) return;
         displayLikedList(type);
     }
 
+    // Retrieves valid media option from user
     public String getMediaOption() {
         String option = displayOptions(mediaOptions);
         return switch (option) {
@@ -142,6 +148,7 @@ public class UI {
         };
     }
 
+    // Displays options to user
     public String displayOptions(String[] options) {
         for (String line : options) {
             System.out.println(line);
@@ -150,18 +157,21 @@ public class UI {
         return getString("Select an option: ");
     }
 
+    // Displays media recommendation list
     private void displayRecommendations() {
         System.out.println("=====================================================================");
         System.out.println("                      MEDIA RECOMMENDATION LIST                      ");
         displayListFromSearchResult(mediaManager.recommendationList);
     }
 
+    // Displays search result list
     private void displaySearchList() {
         System.out.println("=====================================================================");
         System.out.println("                           SEARCH RESULTS                            ");
         displayListFromSearchResult(mediaManager.searchList);
     }
 
+    // Displays SearchResult list object passing list as an argument
     private void displayListFromSearchResult(SearchResult list) {
         for (Media mediaItem : list.results) {
             System.out.println(mediaItem.toString(mediaManager.genreList));
@@ -172,6 +182,7 @@ public class UI {
         System.out.println("=====================================================================");
     }
 
+    // Displays liked list passing type (movie or series) as argument
     private void displayLikedList(String type) {
         System.out.println("=====================================================================");
         System.out.println("                          YOUR LIKED LIST                            ");
@@ -188,11 +199,13 @@ public class UI {
         System.out.println("=====================================================================");
     }
 
+    // Retrieves input from user
     private String getString(String text) {
         System.out.print(text);
         return scanner.nextLine();
     }
 
+    // Retrieves valid int input from user
     private int getInt(String text) {
         int integer;
         while (true) {

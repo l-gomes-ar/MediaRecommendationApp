@@ -12,6 +12,7 @@ public class Movie extends Media {
         return title;
     }
 
+    // Displays shorten formatted string with movie info
     public void displayShortSummary() {
         String string = "=====================================================================\n" +
                 "ID: " + id + "\n" +
@@ -19,6 +20,7 @@ public class Movie extends Media {
         System.out.println(string);
     }
 
+    // Returns formatted string with movie info
     public String toString(GenreList genreList) {
         String formattedReleaseDate = (release_date != null && !release_date.isEmpty()) ?
                 LocalDate.parse(release_date).format(DateTimeFormatter.ofPattern("MMM dd, yyyy")) :

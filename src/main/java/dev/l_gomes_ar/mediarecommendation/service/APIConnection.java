@@ -22,11 +22,13 @@ public class APIConnection {
     private static final String MOVIE_RECOMMENDATION_BASE_URL = BASE_URL + "discover/movie?vote_average.gte=7&vote_count.gte=1000";
     private static final String SERIES_RECOMMENDATION_BASE_URL = BASE_URL + "discover/tv?vote_average.gte=7&vote_count.gte=1000";
 
+    // Builds Gson object with custom deserializer
     public final Gson gson = new GsonBuilder()
             .registerTypeAdapter(SearchResult.class, new SearchResultDeserializer())
             .registerTypeAdapter(GenreList.class, new GenreListDeserializer())
             .create();
 
+    // Retrieves list of media (used for the recommendations list)
     public SearchResult getRecommendations(String type, int page) {
         return getRecommendations(type, null, page);
     }
@@ -37,6 +39,7 @@ public class APIConnection {
         return (response != null) ? gson.fromJson(response.body(), SearchResult.class) : null;
     }
 
+    // Retrieves list of media (used for the search list)
     public SearchResult searchMediaByQuery(String type, String query) {
         String escapedQuery = query.replaceAll("\\s+", "+");
         String uri = (type.equals("movie")) ? SEARCH_MOVIE_URI + escapedQuery : SEARCH_SERIES_URI + escapedQuery;
@@ -53,6 +56,7 @@ public class APIConnection {
         return (response != null)  ? gson.fromJson(response.body(), SearchResult.class) : null;
     }
 
+    // Retrieves genre information (name and id)
     public GenreList getGenreList(String type) {
         HttpResponse<String> response;
         String uri = (type.equals("movie") ? MOVIE_GENRE_LIST : SERIES_GENRE_LIST);
@@ -60,6 +64,7 @@ public class APIConnection {
         return (response != null) ? gson.fromJson(response.body(), GenreList.class) : null;
     }
 
+    // Used to make API calls and catches errors
     private HttpResponse<String> getResponse(String uri) {
         HttpRequest httpRequest;
         try {

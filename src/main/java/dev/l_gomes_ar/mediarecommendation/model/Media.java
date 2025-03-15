@@ -7,6 +7,7 @@ public abstract class Media {
     protected String overview;
     protected String vote_average;
 
+    // Provide list of genres by id
     protected String getGenreList(GenreList genreList) {
         if (genre_ids == null) return "Not available";
 
@@ -23,6 +24,7 @@ public abstract class Media {
         return this.genre_ids;
     }
 
+    // Shortens overview string (55 characters)
     protected String shortenOverview(String text) {
         if (!text.isEmpty()) {
             if (text.length() > 55) {
@@ -50,6 +52,7 @@ public abstract class Media {
 
     public abstract String toString(GenreList genreList);
 
+    // Overrides the equals method to add Media object comparison
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
